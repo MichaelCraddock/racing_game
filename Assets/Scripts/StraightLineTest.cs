@@ -12,6 +12,7 @@ public class StraightLineTest : MonoBehaviour {
     public float carMass = 1200.0f;     // Mass of the car in Kilograms
 
     Rigidbody rigidbody;
+    //Transform carGeo;
 
     bool accel;
 
@@ -37,13 +38,19 @@ public class StraightLineTest : MonoBehaviour {
 
     public float brakingPower = 100f;
 
+    public float tiltAngle = 0.0f;
+
+    private float maxTilt = 1.0f;
+
 	void Start () {
         rigidbody = GetComponent<Rigidbody>();
-	}
+        //carGeo = gameObject.transform.Find("carGeo");
+  }
 	
     void Update()
     {
         accel = Input.GetKey(KeyCode.W);
+
         float throttlePos = Input.GetAxis("Vertical");
         if(Input.GetKey(KeyCode.Space))
         {
@@ -124,6 +131,11 @@ public class StraightLineTest : MonoBehaviour {
         else
             rigidbody.angularDrag = 0.1f;
 
+        //if (accel) {
+      //tiltAngle += 0.1f;
+      //carGeo.transform.Rotate(-tiltAngle, 0.0f, 0.0f);
+          //rigidbody.AddForceAtPosition(Vector3.down * 5000.0f, new Vector3(rigidbody.transform.position.x, rigidbody.transform.position.y, rigidbody.transform.position.z - 1.1f));
+        //}
 
 	}
 
