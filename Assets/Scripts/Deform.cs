@@ -6,9 +6,8 @@ public class Deform : MonoBehaviour
     private Material material;
     public CarController car;
     public AudioSource crashAudio;
-    public GameObject CarshellN, CarshellB, CarshellVB, CarshellW;
-    public float carhealth = 100;
-    public float carbumperhealth = 100;
+    public GameObject CarshellN, CarshellB, CarshellVB, CarshellW, FBnorm, FBDam, FBCOL;
+    public float carhealth, frontbumphealth = 100;
     public Texture Normal;
     public Texture Damaged;
 
@@ -24,16 +23,12 @@ public class Deform : MonoBehaviour
         {
             Debug.Log("No audio source, please add one crash sound to the car");
         }
+       
     }
 
     void Update()
     {
-        //if (car.isAccident && destructionLevel<1.0f)
-        //{
-        //    destructionLevel = 1.0f;
-        //    material.SetFloat("_Displacement", destructionLevel);
-        //    crashAudio.Play();
-        //}
+   
         if (carhealth <= 100)
         {
             CarshellN.SetActive(true);
@@ -64,6 +59,8 @@ public class Deform : MonoBehaviour
 
             }
         
+    
+        
         if (Input.GetKey(KeyCode.R))
         {
             Debug.Log("100 Health");
@@ -71,15 +68,17 @@ public class Deform : MonoBehaviour
         }
 
     }
-
     void OnCollisionEnter(Collision col)
     {
+       
         if (col.gameObject.tag == "Enviroment")
         {
-            Debug.Log("something hit");
-            carhealth -= 5;
-            
+            Debug.Log("something hit"+ gameObject.name + col.collider.name + col.contacts.Length);
+            frontbumphealth -= 5;
+
         }
-       
+
     }
+
+
 }
